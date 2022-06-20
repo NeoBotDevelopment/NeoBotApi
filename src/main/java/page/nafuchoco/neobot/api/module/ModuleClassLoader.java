@@ -27,13 +27,15 @@ import java.net.URLClassLoader;
 
 public class ModuleClassLoader extends URLClassLoader {
     private final Launcher launcher;
+    private final ModuleLoader loader;
     private final ModuleDescription description;
     private final NeoModule module;
 
-    protected ModuleClassLoader(Launcher launcher, File file, ModuleDescription description, ClassLoader parent)
+    protected ModuleClassLoader(Launcher launcher, File file, ModuleDescription description, ClassLoader parent, ModuleLoader loader)
             throws MalformedURLException, InvalidModuleException {
         super(new URL[]{file.toURI().toURL()}, parent);
         this.launcher = launcher;
+        this.loader = loader;
         this.description = description;
 
         Class<?> jarClass;
@@ -58,6 +60,22 @@ public class ModuleClassLoader extends URLClassLoader {
         } catch (InvocationTargetException e) {
             throw new InvalidModuleException("An error occurred during initialization of the constructor.", e);
         }
+    }
+
+    @Override
+    protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+        try {
+            return super.loadClass(name, resolve);
+        } catch (ClassNotFoundException e) {
+            // Thrown if this module depends on classes in other modules.
+            // Continue processing.
+        }
+
+        Class<?> result = loader.getClassFromDependency(name, resolve, description);
+        if (result != null)
+            return result;
+
+        throw new ClassNotFoundException(name);
     }
 
     public NeoModule getModule() {

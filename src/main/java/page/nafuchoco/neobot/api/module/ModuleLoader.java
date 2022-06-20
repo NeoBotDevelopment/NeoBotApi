@@ -95,7 +95,7 @@ public class ModuleLoader {
 
         ModuleClassLoader classLoader;
         try {
-            classLoader = new ModuleClassLoader(launcher, file, description, getClass().getClassLoader());
+            classLoader = new ModuleClassLoader(launcher, file, description, getClass().getClassLoader(), this);
         } catch (MalformedURLException e) {
             throw new InvalidModuleException(e);
         }
@@ -107,6 +107,19 @@ public class ModuleLoader {
             dataFolder.mkdirs();
 
         return classLoader.getModule();
+    }
+
+    Class<?> getClassFromDependency(String className, boolean resolve, ModuleDescription description) {
+        for (String dependency : description.getDependency()) {
+            NeoModule module = moduleRegistry.getModule(dependency);
+            try {
+                return module.getClassLoader().loadClass(className, resolve);
+            } catch (ClassNotFoundException e) {
+                // If no class corresponding to the module under search is found, the next module is searched.
+                // Continue processing.
+            }
+        }
+        return null;
     }
 
     /**
