@@ -16,12 +16,14 @@
 
 package page.nafuchoco.neobot.api.datastore;
 
+import org.jetbrains.annotations.NotNull;
 import page.nafuchoco.neobot.api.DatabaseConnector;
 import page.nafuchoco.neobot.api.datastore.exception.DataStoreGenerateException;
 
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DataStoreBuilder {
     private final DatabaseConnector connector;
@@ -125,7 +127,7 @@ public class DataStoreBuilder {
      *                  This name is usually recommended for Camel case or Snake case.
      * @return this builder
      */
-    public DataStoreBuilder storeName(String storeName) {
+    public DataStoreBuilder storeName(@NotNull String storeName) {
         this.storeName = storeName;
         return this;
     }
@@ -138,7 +140,10 @@ public class DataStoreBuilder {
      *                  This name is usually recommended for Camel case or Snake case.
      * @return this builder
      */
-    public DataStoreBuilder addIndex(Class clazz, String indexName) {
+    public DataStoreBuilder addIndex(@NotNull Class clazz, @NotNull String indexName) {
+        getTypeString(clazz); // check the type is supported
+        Objects.requireNonNull(indexName);
+
         indexes.put(indexName, clazz);
         return this;
     }
@@ -149,7 +154,7 @@ public class DataStoreBuilder {
      * @param indexName the name of the index
      * @return this builder
      */
-    public DataStoreBuilder removeIndex(String indexName) {
+    public DataStoreBuilder removeIndex(@NotNull String indexName) {
         indexes.remove(indexName);
         return this;
     }

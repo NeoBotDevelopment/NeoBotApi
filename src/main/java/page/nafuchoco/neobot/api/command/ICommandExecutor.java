@@ -30,7 +30,7 @@ public interface ICommandExecutor {
      *
      * @param context The command context to use at runtime
      */
-    void onInvoke(CommandContext context);
+    void onInvoke(@NotNull CommandContext context);
 
     /**
      * @return Description of the command

@@ -16,6 +16,8 @@
 
 package page.nafuchoco.neobot.api.command;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.module.NeoModule;
 
 import java.util.ArrayList;
@@ -46,34 +48,34 @@ public class CommandGroup {
         this.enabled = enabled;
     }
 
-    public void registerCommand(CommandExecutor executor, NeoModule module) {
+    public void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module) {
         Map<String, CommandExecutor> reg = executors.computeIfAbsent(module, key -> new LinkedHashMap<>());
         String name = executor.getName();
         reg.put(name, executor);
     }
 
-    public void removeCommand(String name, NeoModule module) {
+    public void removeCommand(@NotNull String name, @Nullable NeoModule module) {
         if (executors.containsKey(module)) {
             CommandExecutor executor = executors.get(module).get(name);
             executors.get(module).remove(executor.getName());
         }
     }
 
-    public void removeCommand(CommandExecutor executor, NeoModule module) {
+    public void removeCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module) {
         if (executors.containsKey(module)) {
             executors.get(module).remove(executor.getName());
         }
     }
 
-    public void removeCommands(NeoModule module) {
+    public void removeCommands(@NotNull NeoModule module) {
         executors.remove(module);
     }
 
-    public List<CommandExecutor> getCommands() {
+    public @NotNull List<CommandExecutor> getCommands() {
         return executors.values().stream().flatMap(v -> v.values().stream()).distinct().toList();
     }
 
-    public CommandExecutor getExecutor(String name) {
+    public CommandExecutor getExecutor(@NotNull String name) {
         CommandExecutor executor = null;
         List<NeoModule> modules = new ArrayList<>(executors.keySet());
         for (int i = modules.size() - 1; i >= 0; i--) {

@@ -16,6 +16,8 @@
 
 package page.nafuchoco.neobot.api.module;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
 import page.nafuchoco.neobot.api.command.CommandExecutor;
 
@@ -53,7 +55,7 @@ public interface Module {
      *
      * @param executor CommandExecutor class to be registered
      */
-    default void registerCommand(CommandExecutor executor) {
+    default void registerCommand(@NotNull CommandExecutor executor) {
         registerCommand(null, executor);
     }
 
@@ -63,14 +65,14 @@ public interface Module {
      * @param groupName       Name of the command group to which the command executor belongs.
      * @param commandExecutor CommandExecutor class to be registered
      */
-    void registerCommand(String groupName, CommandExecutor commandExecutor);
+    void registerCommand(@Nullable String groupName, @NotNull CommandExecutor commandExecutor);
 
     /**
      * Register all CommandExecutors.
      *
      * @param executors List containing the CommandExecutor
      */
-    default void registerCommands(List<CommandExecutor> executors) {
+    default void registerCommands(@NotNull List<CommandExecutor> executors) {
         registerCommand(null, executors);
     }
 
@@ -80,7 +82,7 @@ public interface Module {
      * @param groupName Name of the command group to which the command executor belongs.
      * @param executors List containing the CommandExecutor
      */
-    default void registerCommand(String groupName, List<CommandExecutor> executors) {
+    default void registerCommand(@Nullable String groupName, @NotNull List<CommandExecutor> executors) {
         executors.forEach(e -> registerCommand(groupName, e));
     }
 
@@ -94,7 +96,7 @@ public interface Module {
      *
      * @param executor CommandExecutor class that wants to be unregistered
      */
-    void removeCommand(CommandExecutor executor);
+    void removeCommand(@NotNull CommandExecutor executor);
 
     /**
      * Unregisters all CommandExecutor classes registered from this module.

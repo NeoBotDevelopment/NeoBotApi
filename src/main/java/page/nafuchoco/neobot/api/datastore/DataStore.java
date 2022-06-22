@@ -16,6 +16,7 @@
 
 package page.nafuchoco.neobot.api.datastore;
 
+import org.jetbrains.annotations.NotNull;
 import page.nafuchoco.neobot.api.DatabaseConnector;
 import page.nafuchoco.neobot.api.datastore.exception.DataStoreException;
 
@@ -28,7 +29,7 @@ public class DataStore {
     private final String name;
     private final Map<String, Class> indexes;
 
-    protected DataStore(DatabaseConnector connector, String name, Map<String, Class> indexes) {
+    protected DataStore(@NotNull DatabaseConnector connector, @NotNull String name, @NotNull Map<String, Class> indexes) {
         this.connector = connector;
         this.name = connector.getPrefix() + name;
         this.indexes = indexes;

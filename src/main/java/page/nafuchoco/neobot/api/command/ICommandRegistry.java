@@ -1,31 +1,33 @@
 package page.nafuchoco.neobot.api.command;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.module.NeoModule;
 
 import java.util.List;
 
 public interface ICommandRegistry {
-    void registerCommand(CommandExecutor executor, NeoModule module);
+    void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module);
 
-    void registerCommand(CommandExecutor executor, String groupName, NeoModule module);
+    void registerCommand(@NotNull CommandExecutor executor, @Nullable String groupName, @Nullable NeoModule module);
 
-    void removeCommand(String name, NeoModule module);
+    void removeCommand(@NotNull String name, @Nullable NeoModule module);
 
-    void removeCommand(CommandExecutor executor, NeoModule module);
+    void removeCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module);
 
-    void removeCommands(NeoModule module);
+    void removeCommands(@Nullable NeoModule module);
 
-    void deleteCommandGroup(String groupName);
+    void deleteCommandGroup(@Nullable String groupName);
 
-    void deleteCommandGroup(CommandGroup commandGroup);
+    void deleteCommandGroup(@NotNull CommandGroup commandGroup);
 
-    List<CommandGroup> getCommandGroups();
+    @NotNull List<CommandGroup> getCommandGroups();
 
-    List<String> getCommandGroupsNames();
+    @NotNull List<String> getCommandGroupsNames();
 
-    List<CommandExecutor> getCommands();
+    @NotNull List<CommandExecutor> getCommands();
 
-    CommandGroup getCommandGroup(String groupName);
+    @Nullable CommandGroup getCommandGroup(String groupName);
 
-    CommandExecutor getExecutor(String name);
+    @Nullable CommandExecutor getExecutor(String name);
 }

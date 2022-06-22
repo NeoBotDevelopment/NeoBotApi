@@ -16,6 +16,8 @@
 
 package page.nafuchoco.neobot.api.datastore;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.DatabaseConnector;
 
 import java.util.HashMap;
@@ -34,11 +36,11 @@ public class DataStoreManager {
         return new DataStoreBuilder(connector);
     }
 
-    public DataStore getDataStore(String name) {
+    public @Nullable DataStore getDataStore(@NotNull String name) {
         return dataStoreMap.get(name);
     }
 
-    public void registerDataStore(DataStore dataStore) {
+    public void registerDataStore(@NotNull DataStore dataStore) {
         dataStoreMap.put(dataStore.getName(), dataStore);
     }
 }

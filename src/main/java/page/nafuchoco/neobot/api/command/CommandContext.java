@@ -23,6 +23,8 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.interactions.InteractionHook;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
 
 import java.util.Map;
@@ -44,70 +46,71 @@ public class CommandContext {
 
     private final SlashCommandResponse responseSender;
 
-    public Launcher getLauncher() {
+
+    public @NotNull Launcher getLauncher() {
         return launcher;
     }
 
     /**
      * @return Command Executed Guild
      */
-    public Guild getGuild() {
+    public @NotNull Guild getGuild() {
         return guild;
     }
 
     /**
      * @return Command executed text channel
      */
-    public TextChannel getChannel() {
+    public @NotNull TextChannel getChannel() {
         return channel;
     }
 
     /**
      * @return Command executed member
      */
-    public Member getInvoker() {
+    public @NotNull Member getInvoker() {
         return invoker;
     }
 
     /**
      * @return
      */
-    public InteractionHook getHook() {
+    public @NotNull InteractionHook getHook() {
         return hook;
     }
 
     /**
      * @return Executed command name
      */
-    public String getTrigger() {
+    public @NotNull String getTrigger() {
         return trigger;
     }
 
     /**
      * @return Specified options
      */
-    public Map<String, AssignedCommandValueOption> getOptions() {
+    public @NotNull Map<String, AssignedCommandValueOption> getOptions() {
         return options;
     }
 
     /**
-     * @return The command class corresponding to the command name
+     * @return Executed command class
      */
-    public CommandExecutor getCommand() {
+    public @NotNull CommandExecutor getCommand() {
         return command;
     }
 
     /**
-     * @return
+     * @return Executed sub command class
      */
-    public CommandExecutor getSubCommand() {
+    public @Nullable CommandExecutor getSubCommand() {
         return subCommand;
     }
 
     /**
      * @return
      */
-    public SlashCommandResponse getResponseSender() {
+    public @NotNull SlashCommandResponse getResponseSender() {
         return responseSender;
     }
 }

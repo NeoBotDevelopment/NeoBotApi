@@ -17,12 +17,13 @@
 package page.nafuchoco.neobot.api.command;
 
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import org.jetbrains.annotations.NotNull;
 
 public interface CommandOption {
 
-    OptionType optionType();
+    @NotNull OptionType optionType();
 
-    String optionName();
+    @NotNull String optionName();
 
-    String optionDescription();
+    @NotNull String optionDescription();
 }

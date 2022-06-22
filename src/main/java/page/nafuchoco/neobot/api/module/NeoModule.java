@@ -16,6 +16,8 @@
 
 package page.nafuchoco.neobot.api.module;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
 import page.nafuchoco.neobot.api.command.CommandExecutor;
 
@@ -79,7 +81,7 @@ public abstract class NeoModule implements Module {
     }
 
     @Override
-    public final void registerCommand(String groupName, CommandExecutor executor) {
+    public final void registerCommand(@Nullable String groupName, @NotNull CommandExecutor executor) {
         try {
             launcher.getCommandRegistry().registerCommand(executor, groupName, this);
         } catch (NullPointerException e) {
@@ -93,7 +95,7 @@ public abstract class NeoModule implements Module {
     }
 
     @Override
-    public final void removeCommand(CommandExecutor executor) {
+    public final void removeCommand(@NotNull CommandExecutor executor) {
         try {
             launcher.getCommandRegistry().removeCommand(executor, this);
         } catch (NullPointerException e) {

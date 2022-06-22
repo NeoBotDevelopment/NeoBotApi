@@ -35,7 +35,7 @@ public abstract class CommandExecutor implements ICommandExecutor {
         return name;
     }
 
-    public List<CommandOption> getOptions() {
+    public @NotNull List<CommandOption> getOptions() {
         return options;
     }
 
@@ -44,7 +44,7 @@ public abstract class CommandExecutor implements ICommandExecutor {
      *
      * @return Immutable list of registered {@link CommandValueOption}
      */
-    public List<CommandValueOption> getValueOptions() {
+    public @NotNull List<CommandValueOption> getValueOptions() {
         return options.stream()
                 .filter(CommandValueOption.class::isInstance)
                 .map(CommandValueOption.class::cast)
@@ -56,7 +56,7 @@ public abstract class CommandExecutor implements ICommandExecutor {
      *
      * @return Immutable list of registered {@link SubCommandOption}
      */
-    public List<SubCommandOption> getSubCommands() {
+    public @NotNull List<SubCommandOption> getSubCommands() {
         return options.stream()
                 .filter(SubCommandOption.class::isInstance)
                 .map(SubCommandOption.class::cast)

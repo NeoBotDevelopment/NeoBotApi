@@ -18,6 +18,7 @@ package page.nafuchoco.neobot.api.command;
 
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
+import org.jetbrains.annotations.NotNull;
 
 public class CommandValueOption implements CommandOption {
     private final OptionType optionType;
@@ -26,8 +27,8 @@ public class CommandValueOption implements CommandOption {
     private final boolean required;
     private final boolean autoComplete;
 
-    public CommandValueOption(OptionType optionType,
-                              String optionName, String optionDescription, boolean required,
+    public CommandValueOption(@NotNull OptionType optionType,
+                              @NotNull String optionName, @NotNull String optionDescription, boolean required,
                               boolean autoComplete) {
         this.optionType = optionType;
         this.optionName = optionName;
