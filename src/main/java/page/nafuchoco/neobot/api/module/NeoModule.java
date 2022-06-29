@@ -91,7 +91,7 @@ public abstract class NeoModule implements Module {
 
     @Override
     public void queueCommandRegister() {
-        launcher.queueCommandRegister();
+        // do nothing
     }
 
     @Override
