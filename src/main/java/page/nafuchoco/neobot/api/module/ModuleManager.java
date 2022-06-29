@@ -47,6 +47,14 @@ public class ModuleManager {
     }
 
     /**
+     * @return Return module directory.
+     * @since v1.1
+     */
+    public File getModuleDir() {
+        return moduleLoader.getModuleDir();
+    }
+
+    /**
      * @return Returns all registered modules.
      */
     public List<NeoModule> getModules() {

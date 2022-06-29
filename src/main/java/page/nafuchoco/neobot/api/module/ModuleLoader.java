@@ -49,6 +49,14 @@ public class ModuleLoader {
     }
 
     /**
+     * @return Return module directory.
+     * @since v1.1
+     */
+    public File getModuleDir() {
+        return dir;
+    }
+
+    /**
      * Get the list of JAR files stored in the module folder.
      * If the folder doesn't exist or is not from, return an empty List.
      *
