@@ -58,8 +58,19 @@ public class ModuleVersionChecker {
         if (!(arg1Matcher.matches() && arg2Matcher.matches()))
             throw new IllegalArgumentException("The version format must conform to Semantic Versioning 2.0.0.");
 
-        return Integer.parseInt(arg1Matcher.group(3)) < Integer.parseInt(arg2Matcher.group(3))
-                || Integer.parseInt(arg1Matcher.group(2)) < Integer.parseInt(arg2Matcher.group(2))
-                || Integer.parseInt(arg1Matcher.group(1)) < Integer.parseInt(arg2Matcher.group(1));
+        boolean result;
+
+        // check major version
+        result = Integer.parseInt(arg1Matcher.group(1)) < Integer.parseInt(arg2Matcher.group(1));
+
+        // check minor version if major version is same
+        if (!result)
+            result = Integer.parseInt(arg1Matcher.group(2)) < Integer.parseInt(arg2Matcher.group(2));
+
+        // check patch version if minor version is same
+        if (!result)
+            result = Integer.parseInt(arg1Matcher.group(3)) <= Integer.parseInt(arg2Matcher.group(3));
+
+        return result;
     }
 }
