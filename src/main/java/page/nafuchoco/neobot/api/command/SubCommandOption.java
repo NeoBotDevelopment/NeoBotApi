@@ -17,6 +17,7 @@
 package page.nafuchoco.neobot.api.command;
 
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class SubCommandOption extends CommandExecutor implements CommandOption {
 
@@ -25,17 +26,17 @@ public abstract class SubCommandOption extends CommandExecutor implements Comman
     }
 
     @Override
-    public final OptionType optionType() {
+    public final @NotNull OptionType optionType() {
         return OptionType.SUB_COMMAND;
     }
 
     @Override
-    public final String optionName() {
+    public final @NotNull String optionName() {
         return getName();
     }
 
     @Override
-    public final String optionDescription() {
+    public final @NotNull String optionDescription() {
         return getDescription();
     }
 }

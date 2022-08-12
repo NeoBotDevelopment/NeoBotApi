@@ -48,7 +48,7 @@ public class ExceptionUtil {
         var builder = new StringBuilder();
         builder.append(":warning: There's a problem. If the problem persists, please report it to the administrator.\n");
         for (String msg : message)
-            builder.append(msg + "\n");
+            builder.append(msg).append("\n");
 
         if (trace.length() > 1650)
             trace = trace.substring(0, 1650) + " [...]";
@@ -62,7 +62,7 @@ public class ExceptionUtil {
         if (toLog) {
             var sb = new StringBuilder();
             for (String msg : message)
-                sb.append(msg + "\n");
+                sb.append(msg).append("\n");
             if (context != null) {
                 MDC.put("CommandExecutor", context.getCommand().getName());
                 MDC.put("CommandArgs", context.getOptions().toString());

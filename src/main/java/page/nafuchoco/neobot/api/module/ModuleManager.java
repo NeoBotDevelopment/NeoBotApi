@@ -87,7 +87,7 @@ public class ModuleManager {
                 } catch (InvalidModuleException e) {
                     log.warn("Failed to load the module information.: {}", file.getName(), e);
                     iterator.remove();
-                    continue iterator;
+                    continue;
                 }
 
                 if (!CollectionUtils.isEmpty(description.getLoadBefore())

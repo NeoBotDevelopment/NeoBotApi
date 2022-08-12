@@ -47,9 +47,7 @@ public class DataStore {
      * @return The data stored in the data store.
      */
     public <T> T getStoreData(long id, String index) {
-        T data = (T) get(id, index, indexes.get(index));
-
-        return data;
+        return (T) get(id, index, indexes.get(index));
     }
 
     /**
@@ -101,7 +99,7 @@ public class DataStore {
                      "SELECT " + key + " FROM " + name + " WHERE id = ?")) {
             ps.setLong(1, id);
             try (var resultSet = ps.executeQuery()) {
-                while (resultSet.next())
+                if (resultSet.next())
                     return resultSet.getObject(key, type);
                 return null;
             }
@@ -112,13 +110,13 @@ public class DataStore {
 
     private void set(long id, Object... values) {
         StringBuilder statement = new StringBuilder("INSERT INTO " + name + " (id, ");
-        indexes.entrySet().stream().map(Map.Entry::getKey).forEach(key -> statement.append(key).append(", "));
+        indexes.keySet().forEach(key -> statement.append(key).append(", "));
         statement.delete(statement.length() - 2, statement.length());
         statement.append(") VALUES (?, ");
-        indexes.entrySet().stream().map(Map.Entry::getKey).forEach(key -> statement.append("?, "));
+        indexes.keySet().forEach(key -> statement.append("?, "));
         statement.delete(statement.length() - 2, statement.length());
         statement.append(") ON DUPLICATE KEY UPDATE ");
-        indexes.entrySet().stream().map(Map.Entry::getKey).forEach(key -> statement.append(key).append(" = ?, "));
+        indexes.keySet().forEach(key -> statement.append(key).append(" = ?, "));
         statement.delete(statement.length() - 2, statement.length());
 
         try (var connection = connector.getConnection();
