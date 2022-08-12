@@ -22,6 +22,7 @@ import lombok.ToString;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -35,7 +36,7 @@ import java.util.Map;
 public class CommandContext {
     private final Launcher launcher;
     private final Guild guild;
-    private final TextChannel channel;
+    private final MessageChannelUnion channel;
     private final Member invoker;
     private final InteractionHook hook;
 
@@ -62,7 +63,8 @@ public class CommandContext {
      * @return Command executed text channel
      */
     public @NotNull TextChannel getChannel() {
-        return channel;
+        // テキストチャンネルでない場合エラーが発生する可能性があります。実質的にはそのような状況に陥ることはまずありません。
+        return channel.asTextChannel();
     }
 
     /**

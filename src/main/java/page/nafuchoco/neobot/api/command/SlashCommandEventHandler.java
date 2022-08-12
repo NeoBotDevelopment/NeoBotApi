@@ -22,6 +22,7 @@ import lombok.val;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import org.jetbrains.annotations.NotNull;
 import page.nafuchoco.neobot.api.ExceptionUtil;
 import page.nafuchoco.neobot.api.Launcher;
 
@@ -34,7 +35,7 @@ public class SlashCommandEventHandler extends ListenerAdapter {
     private final ICommandRegistry registry;
 
     @Override
-    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         // レジストリが登録されてない場合は無視
         if (registry == null) {
             event.reply("""
@@ -69,7 +70,7 @@ public class SlashCommandEventHandler extends ListenerAdapter {
         CommandContext context = new CommandContext(
                 launcher,
                 event.getGuild(),
-                event.getTextChannel(),
+                event.getChannel(),
                 event.getMember(),
                 hook,
                 event.getName(),
@@ -104,7 +105,7 @@ public class SlashCommandEventHandler extends ListenerAdapter {
 
             case USER -> new AssignedCommandValueOption<>((CommandValueOption) option, mapping.getAsUser());
 
-            case CHANNEL -> new AssignedCommandValueOption<>((CommandValueOption) option, mapping.getAsGuildChannel());
+            case CHANNEL -> new AssignedCommandValueOption<>((CommandValueOption) option, mapping.getAsChannel());
 
             case ROLE -> new AssignedCommandValueOption<>((CommandValueOption) option, mapping.getAsRole());
 

@@ -46,7 +46,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.36'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-alpha.12') {
+    api('net.dv8tion:JDA:5.0.0-alpha.17') {
         exclude module: 'opus-java'
     }
 
