@@ -47,6 +47,14 @@ public class ModuleManager {
     }
 
     /**
+     * @return Return module directory.
+     * @since v1.1
+     */
+    public File getModuleDir() {
+        return moduleLoader.getModuleDir();
+    }
+
+    /**
      * @return Returns all registered modules.
      */
     public List<NeoModule> getModules() {
@@ -79,7 +87,7 @@ public class ModuleManager {
                 } catch (InvalidModuleException e) {
                     log.warn("Failed to load the module information.: {}", file.getName(), e);
                     iterator.remove();
-                    continue iterator;
+                    continue;
                 }
 
                 if (!CollectionUtils.isEmpty(description.getLoadBefore())

@@ -18,8 +18,10 @@ package page.nafuchoco.neobot.api.module;
 
 import page.nafuchoco.neobot.api.module.exception.ModuleDuplicateException;
 
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ModuleRegistry {
     private final Map<String, NeoModule> modules = new LinkedHashMap<>();
@@ -43,11 +45,7 @@ public class ModuleRegistry {
      * @param module Module to be removed.
      */
     public synchronized void deleteModule(NeoModule module) {
-        for (Iterator<Entry<String, NeoModule>> i = modules.entrySet().iterator(); i.hasNext(); ) {
-            Entry<String, NeoModule> entry = i.next();
-            if (entry.getValue().equals(module))
-                i.remove();
-        }
+        modules.entrySet().removeIf(entry -> entry.getValue().equals(module));
     }
 
     /**

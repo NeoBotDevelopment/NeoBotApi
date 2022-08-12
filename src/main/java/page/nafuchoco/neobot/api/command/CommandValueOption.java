@@ -43,17 +43,17 @@ public class CommandValueOption implements CommandOption {
     }
 
     @Override
-    public OptionType optionType() {
+    public @NotNull OptionType optionType() {
         return optionType;
     }
 
     @Override
-    public String optionName() {
+    public @NotNull String optionName() {
         return optionName;
     }
 
     @Override
-    public String optionDescription() {
+    public @NotNull String optionDescription() {
         return optionDescription;
     }
 

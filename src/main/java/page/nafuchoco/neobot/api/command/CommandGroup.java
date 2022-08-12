@@ -54,11 +54,14 @@ public class CommandGroup {
         reg.put(name, executor);
     }
 
-    public void removeCommand(@NotNull String name, @Nullable NeoModule module) {
+    public CommandExecutor removeCommand(@NotNull String name, @Nullable NeoModule module) {
+        CommandExecutor executor = null;
         if (executors.containsKey(module)) {
-            CommandExecutor executor = executors.get(module).get(name);
+            executor = executors.get(module).get(name);
             executors.get(module).remove(executor.getName());
         }
+
+        return executor;
     }
 
     public void removeCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module) {
@@ -67,8 +70,8 @@ public class CommandGroup {
         }
     }
 
-    public void removeCommands(@NotNull NeoModule module) {
-        executors.remove(module);
+    public List<CommandExecutor> removeCommands(@NotNull NeoModule module) {
+        return executors.remove(module).values().stream().toList();
     }
 
     public @NotNull List<CommandExecutor> getCommands() {

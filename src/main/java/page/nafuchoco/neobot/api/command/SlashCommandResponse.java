@@ -96,7 +96,7 @@ public class SlashCommandResponse {
 
     @CheckReturnValue
     @Nonnull
-    public WebhookMessageAction<Message> sendFile(@NotNull byte[] data, @NotNull String name, @NotNull AttachmentOption... options) {
+    public WebhookMessageAction<Message> sendFile(byte @NotNull [] data, @NotNull String name, @NotNull AttachmentOption... options) {
         executorResponded = true;
         return hook.sendFile(data, name, options);
     }

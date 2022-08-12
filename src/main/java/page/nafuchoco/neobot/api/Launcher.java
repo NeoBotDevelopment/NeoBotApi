@@ -47,5 +47,10 @@ public interface Launcher {
 
     ShardManager getDiscordApi();
 
+    /**
+     * @deprecated It is no longer necessary to explicitly queue command list updates.
+     * This method will therefore be removed in v2.
+     */
+    @Deprecated(forRemoval = true, since = "v1.1")
     void queueCommandRegister();
 }

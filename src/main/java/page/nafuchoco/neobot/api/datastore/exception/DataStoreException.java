@@ -1,7 +1,7 @@
 package page.nafuchoco.neobot.api.datastore.exception;
 
 public class DataStoreException extends RuntimeException {
-    
+
     public DataStoreException() {
     }
 

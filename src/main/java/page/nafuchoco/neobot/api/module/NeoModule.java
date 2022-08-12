@@ -82,34 +82,31 @@ public abstract class NeoModule implements Module {
 
     @Override
     public final void registerCommand(@Nullable String groupName, @NotNull CommandExecutor executor) {
-        try {
-            launcher.getCommandRegistry().registerCommand(executor, groupName, this);
-        } catch (NullPointerException e) {
+        if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
-        }
+
+        launcher.getCommandRegistry().registerCommand(executor, groupName, this);
     }
 
     @Override
     public void queueCommandRegister() {
-        launcher.queueCommandRegister();
+        // do nothing
     }
 
     @Override
     public final void removeCommand(@NotNull CommandExecutor executor) {
-        try {
-            launcher.getCommandRegistry().removeCommand(executor, this);
-        } catch (NullPointerException e) {
+        if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
-        }
+
+        launcher.getCommandRegistry().removeCommand(executor, this);
     }
 
     @Override
     public final void removeCommands() {
-        try {
-            launcher.getCommandRegistry().removeCommands(this);
-        } catch (NullPointerException e) {
+        if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
-        }
+
+        launcher.getCommandRegistry().removeCommands(this);
     }
 
     @Override
