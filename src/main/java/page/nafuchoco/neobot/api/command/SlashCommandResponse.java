@@ -21,11 +21,13 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import net.dv8tion.jda.api.interactions.callbacks.IMessageEditCallback;
 import net.dv8tion.jda.api.interactions.callbacks.IReplyCallback;
+import net.dv8tion.jda.api.interactions.components.ActionRow;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
 import net.dv8tion.jda.api.requests.ErrorResponse;
 import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageCreateAction;
 import net.dv8tion.jda.api.requests.restaction.WebhookMessageEditAction;
+import net.dv8tion.jda.api.requests.restaction.interactions.MessageEditCallbackAction;
 import net.dv8tion.jda.api.utils.AttachedFile;
 import net.dv8tion.jda.api.utils.AttachmentUpdate;
 import net.dv8tion.jda.api.utils.FileUpload;
@@ -44,7 +46,7 @@ import java.util.Collection;
 public class SlashCommandResponse {
     private final InteractionHook hook;
 
-    private boolean executorResponded = false;
+    private final boolean executorResponded = false;
 
     public SlashCommandResponse(InteractionHook hook) {
         this.hook = hook;
@@ -279,7 +281,6 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessage(@NotNull String content) {
-        
         return hook.sendMessage(content);
     }
 
@@ -788,10 +789,10 @@ public class SlashCommandResponse {
      * @param components The new component layouts for this message, such as {@link ActionRow ActionRows}
      * @return {@link WebhookMessageEditAction}
      * @throws IllegalArgumentException <ul>
-     *                                                                                                                                                 <li>If {@code null} is provided</li>
-     *                                                                                                                                                 <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
-     *                                                                                                                                                 <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
-     *                                                                                                                                             </ul>
+     *     <li>If {@code null} is provided</li>
+     *     <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
+     *     <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
+     * </ul>
      */
     @CheckReturnValue
     @Nonnull
@@ -816,10 +817,10 @@ public class SlashCommandResponse {
      * @param components The new component layouts for this message, such as {@link ActionRow ActionRows}
      * @return {@link WebhookMessageEditAction}
      * @throws IllegalArgumentException <ul>
-     *                                                                                                                                                 <li>If {@code null} is provided</li>
-     *                                                                                                                                                 <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
-     *                                                                                                                                                 <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
-     *                                                                                                                                             </ul>
+     *     <li>If {@code null} is provided</li>
+     *     <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
+     *     <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
+     * </ul>
      */
     @CheckReturnValue
     @Nonnull
@@ -844,10 +845,10 @@ public class SlashCommandResponse {
      * @param components The new component layouts for this message, such as {@link ActionRow ActionRows}
      * @return {@link WebhookMessageEditAction}
      * @throws IllegalArgumentException <ul>
-     *                                                                                                                                                 <li>If {@code null} is provided</li>
-     *                                                                                                                                                 <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
-     *                                                                                                                                                 <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
-     *                                                                                                                                             </ul>
+     *     <li>If {@code null} is provided</li>
+     *     <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
+     *     <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
+     * </ul>
      */
     @CheckReturnValue
     @Nonnull
@@ -872,10 +873,10 @@ public class SlashCommandResponse {
      * @param components The new component layouts for this message, such as {@link ActionRow ActionRows}
      * @return {@link WebhookMessageEditAction}
      * @throws IllegalArgumentException <ul>
-     *                                                                                                                                                 <li>If {@code null} is provided</li>
-     *                                                                                                                                                 <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
-     *                                                                                                                                                 <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
-     *                                                                                                                                             </ul>
+     *     <li>If {@code null} is provided</li>
+     *     <li>If any of the components is not {@link LayoutComponent#isMessageCompatible() message compatible}</li>
+     *     <li>If more than {@value Message#MAX_COMPONENT_COUNT} component layouts are provided</li>
+     * </ul>
      */
     @CheckReturnValue
     @Nonnull
