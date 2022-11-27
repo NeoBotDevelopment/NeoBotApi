@@ -67,5 +67,5 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // SQL
-    implementation 'com.zaxxer:HikariCP:5.0.1'
+    api 'com.zaxxer:HikariCP:5.0.1'
 }
