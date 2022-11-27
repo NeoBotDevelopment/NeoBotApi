@@ -77,6 +77,7 @@ public class CommandContext {
     /**
      * @return
      */
+    @Deprecated(forRemoval = true)
     public @NotNull InteractionHook getHook() {
         return hook;
     }
