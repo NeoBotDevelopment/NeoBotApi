@@ -18,29 +18,11 @@ package page.nafuchoco.neobot.api.datastore;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import page.nafuchoco.neobot.api.DatabaseConnector;
 
-import java.util.HashMap;
-import java.util.Map;
+public interface DataStoreManager {
+    @NotNull DataStoreBuilder createDataStoreBuilder();
 
-public class DataStoreManager {
-    private final DatabaseConnector connector;
-    private final Map<String, DataStore> dataStoreMap;
+    @Nullable DataStore getDataStore(@NotNull String name);
 
-    public DataStoreManager(DatabaseConnector connector) {
-        this.connector = connector;
-        dataStoreMap = new HashMap<>();
-    }
-
-    public DataStoreBuilder createDataStoreBuilder() {
-        return new DataStoreBuilder(connector);
-    }
-
-    public @Nullable DataStore getDataStore(@NotNull String name) {
-        return dataStoreMap.get(name);
-    }
-
-    public void registerDataStore(@NotNull DataStore dataStore) {
-        dataStoreMap.put(dataStore.getName(), dataStore);
-    }
+    void registerDataStore(@NotNull DataStore dataStore);
 }
