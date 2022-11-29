@@ -46,7 +46,7 @@ import java.util.Collection;
 public class SlashCommandResponse {
     private final InteractionHook hook;
 
-    private final boolean executorResponded = false;
+    private boolean executorResponded = false;
 
     public SlashCommandResponse(InteractionHook hook) {
         this.hook = hook;
@@ -281,6 +281,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessage(@NotNull String content) {
+        executorResponded = true;
         return hook.sendMessage(content);
     }
 
@@ -303,6 +304,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessage(@NotNull MessageCreateData message) {
+        executorResponded = true;
         return hook.sendMessage(message);
     }
 
@@ -325,6 +327,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessageFormat(@NotNull String format, @NotNull Object... args) {
+        executorResponded = true;
         return hook.sendMessageFormat(format, args);
     }
 
@@ -364,6 +367,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessageEmbeds(@NotNull Collection<? extends MessageEmbed> embeds) {
+        executorResponded = true;
         return hook.sendMessageEmbeds(embeds);
     }
 
@@ -404,6 +408,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessageEmbeds(@NotNull MessageEmbed embed, @NotNull MessageEmbed... embeds) {
+        executorResponded = true;
         return hook.sendMessageEmbeds(embed, embeds);
     }
 
@@ -425,6 +430,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessageComponents(@NotNull Collection<? extends LayoutComponent> components) {
+        executorResponded = true;
         return hook.sendMessageComponents(components);
     }
 
@@ -447,6 +453,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendMessageComponents(@NotNull LayoutComponent component, @NotNull LayoutComponent... other) {
+        executorResponded = true;
         return hook.sendMessageComponents(component, other);
     }
 
@@ -486,6 +493,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendFiles(@NotNull Collection<? extends FileUpload> files) {
+        executorResponded = true;
         return hook.sendFiles(files);
     }
 
@@ -525,6 +533,7 @@ public class SlashCommandResponse {
     @CheckReturnValue
     @Nonnull
     public WebhookMessageCreateAction<Message> sendFiles(@NotNull FileUpload... files) {
+        executorResponded = true;
         return hook.sendFiles(files);
     }
 
