@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id "io.freefair.lombok" version "6.4.3.1"
+    id "io.freefair.lombok" version "6.5.1"
 }
 
 group 'page.nafuchoco'
@@ -46,12 +46,11 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:23.0.0'
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 
-
     // Logger
-    implementation 'org.slf4j:slf4j-api:2.0.4'
+    api 'org.slf4j:slf4j-api:2.0.4'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-alpha.22') {
+    api('net.dv8tion:JDA:5.0.0-beta.3') {
         exclude module: 'opus-java'
     }
 
