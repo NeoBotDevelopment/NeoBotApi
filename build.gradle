@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id "io.freefair.lombok" version "6.5.1"
+    id "io.freefair.lombok" version "6.6.3"
 }
 
 group 'page.nafuchoco'
@@ -50,15 +50,15 @@ dependencies {
     api 'org.slf4j:slf4j-api:2.0.4'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-beta.3') {
+    api('net.dv8tion:JDA:5.0.0-beta.6') {
         exclude module: 'opus-java'
     }
 
     // Parser
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
 
     // Commons Library
     implementation 'commons-io:commons-io:2.11.0'
