@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'page.nafuchoco'
-version '2.0.0-alpha.2'
+version '2.0.0-alpha.3'
 
 task sourcesJar(type: Jar, dependsOn: 'classes') {
     from sourceSets.main.allSource
@@ -43,14 +43,14 @@ repositories {
 
 dependencies {
     // Annotation
-    compileOnly 'org.jetbrains:annotations:23.0.0'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 
     // Logger
-    api 'org.slf4j:slf4j-api:2.0.4'
+    api 'org.slf4j:slf4j-api:2.0.5'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-beta.6') {
+    api('net.dv8tion:JDA:5.0.0-beta.9') {
         exclude module: 'opus-java'
     }
 
