@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'page.nafuchoco'
-version '2.0.0-alpha.4'
+version '2.0.0-alpha.5'
 
 task sourcesJar(type: Jar, dependsOn: 'classes') {
     from sourceSets.main.allSource
@@ -50,7 +50,7 @@ dependencies {
     api 'org.slf4j:slf4j-api:2.0.5'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-beta.12') {
+    api('net.dv8tion:JDA:5.0.0-beta.13') {
         exclude module: 'opus-java'
     }
 
