@@ -88,6 +88,14 @@ public class CommandGroup {
         return executors.remove(module).values().stream().map(Map::values).flatMap(Collection::stream).toList();
     }
 
+    public @NotNull List<CommandExecutor> getCommands(@Nullable NeoModule module) {
+        return executors.get(module).values().stream().map(Map::values).flatMap(Collection::stream).toList();
+    }
+
+    public @NotNull List<CommandExecutor> getCommands(Guild guild) {
+        return executors.values().stream().filter(v -> v.containsKey(guild.getIdLong())).map(v -> v.get(guild.getIdLong()).values()).flatMap(Collection::stream).toList();
+    }
+
     public @NotNull List<CommandExecutor> getCommands() {
         return executors.values().stream().map(Map::values).flatMap(Collection::stream).map(Map::values).flatMap(Collection::stream).toList();
     }

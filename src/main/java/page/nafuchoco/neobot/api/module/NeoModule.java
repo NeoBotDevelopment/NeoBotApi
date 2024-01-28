@@ -82,11 +82,11 @@ public abstract class NeoModule implements Module {
     }
 
     @Override
-    public final void registerCommand(@Nullable Guild guild, @Nullable String groupName, @NotNull CommandExecutor executor) {
+    public final void registerCommand(@NotNull CommandExecutor executor, @Nullable String groupName, @Nullable Guild guild) {
         if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
 
-        launcher.getCommandRegistry().registerCommand(executor, guild, groupName, this);
+        launcher.getCommandRegistry().registerCommand(executor, this, groupName, guild);
     }
 
     @Override
@@ -95,11 +95,11 @@ public abstract class NeoModule implements Module {
     }
 
     @Override
-    public final void removeCommand(@NotNull CommandExecutor executor) {
+    public final void removeCommand(@NotNull CommandExecutor executor, @Nullable Guild guild) {
         if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
 
-        launcher.getCommandRegistry().removeCommand(executor, this);
+        launcher.getCommandRegistry().removeCommand(executor, this, guild);
     }
 
     @Override

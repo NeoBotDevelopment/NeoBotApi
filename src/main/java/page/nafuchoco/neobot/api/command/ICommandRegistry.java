@@ -9,18 +9,20 @@ import java.util.List;
 
 public interface ICommandRegistry {
     default void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module) {
-        registerCommand(executor, null, null, module);
+        registerCommand(executor, module, null, null);
     }
 
-    default void registerCommand(@NotNull CommandExecutor executor, @Nullable String groupName, @Nullable NeoModule module) {
-        registerCommand(executor, null, groupName, module);
+    default void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module, @Nullable String groupName) {
+        registerCommand(executor, module, groupName, null);
     }
 
-    void registerCommand(@NotNull CommandExecutor executor, @Nullable Guild guild, @Nullable String groupName, @Nullable NeoModule module);
+    void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module, @Nullable String groupName, @Nullable Guild guild);
 
-    void removeCommand(@NotNull String name, @Nullable NeoModule module);
+    void removeCommand(@NotNull String name, @Nullable NeoModule module, @Nullable Guild guild);
 
-    void removeCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module);
+    void removeCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module, @Nullable Guild guild);
+
+    void removeCommands(@Nullable NeoModule module, @Nullable Guild guild);
 
     void removeCommands(@Nullable NeoModule module);
 
@@ -32,9 +34,13 @@ public interface ICommandRegistry {
 
     @NotNull List<String> getCommandGroupsNames();
 
-    @NotNull List<CommandExecutor> getCommands();
-
     @Nullable CommandGroup getCommandGroup(String groupName);
 
-    @Nullable CommandExecutor getExecutor(String name);
+    @NotNull List<CommandExecutor> getCommands();
+
+    @NotNull List<CommandExecutor> getCommands(@Nullable NeoModule module);
+
+    @NotNull List<CommandExecutor> getCommands(@Nullable Guild guild);
+
+    @Nullable CommandExecutor getExecutor(@Nullable Guild guild, String name);
 }
