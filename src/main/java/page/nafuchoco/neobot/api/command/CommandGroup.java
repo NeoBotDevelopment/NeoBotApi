@@ -74,7 +74,6 @@ public class CommandGroup {
                 executors.get(module).get(guild != null ? guild.getIdLong() : null).remove(name);
                 return true;
             }
-
         }
 
         return false; // If the command executor is not registered, return false.
@@ -84,8 +83,11 @@ public class CommandGroup {
         return executors.get(module).remove(guild != null ? guild.getIdLong() : null).values().stream().toList();
     }
 
-    public List<CommandExecutor> removeCommands(@NotNull NeoModule module) {
-        return executors.remove(module).values().stream().map(Map::values).flatMap(Collection::stream).toList();
+    public Map<Long, List<CommandExecutor>> removeCommands(@NotNull NeoModule module) {
+        Map<Long, List<CommandExecutor>> removed = new LinkedHashMap<>();
+        executors.get(module).forEach((key, value) -> removed.put(key, value.values().stream().toList()));
+        executors.remove(module);
+        return removed;
     }
 
     public @NotNull List<CommandExecutor> getCommands(@Nullable NeoModule module) {
