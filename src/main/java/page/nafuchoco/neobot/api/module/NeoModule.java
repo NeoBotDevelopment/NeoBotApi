@@ -16,6 +16,7 @@
 
 package page.nafuchoco.neobot.api.module;
 
+import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
@@ -81,11 +82,11 @@ public abstract class NeoModule implements Module {
     }
 
     @Override
-    public final void registerCommand(@Nullable String groupName, @NotNull CommandExecutor executor) {
+    public final void registerCommand(@Nullable Guild guild, @Nullable String groupName, @NotNull CommandExecutor executor) {
         if (!isEnable())
             throw new IllegalStateException("This method is not available in \"onLoad\".");
 
-        launcher.getCommandRegistry().registerCommand(executor, groupName, this);
+        launcher.getCommandRegistry().registerCommand(executor, guild, groupName, this);
     }
 
     @Override

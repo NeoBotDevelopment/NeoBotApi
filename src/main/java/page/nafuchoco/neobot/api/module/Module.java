@@ -16,6 +16,7 @@
 
 package page.nafuchoco.neobot.api.module;
 
+import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
@@ -56,7 +57,7 @@ public interface Module {
      * @param executor CommandExecutor class to be registered
      */
     default void registerCommand(@NotNull CommandExecutor executor) {
-        registerCommand(null, executor);
+        registerCommand(null, null, executor);
     }
 
     /**
@@ -65,7 +66,17 @@ public interface Module {
      * @param groupName       Name of the command group to which the command executor belongs.
      * @param commandExecutor CommandExecutor class to be registered
      */
-    void registerCommand(@Nullable String groupName, @NotNull CommandExecutor commandExecutor);
+    default void registerCommand(@Nullable String groupName, @NotNull CommandExecutor commandExecutor) {
+        registerCommand(null, groupName, commandExecutor);
+    }
+
+    /**
+     * Register the CommandExecutor.
+     *
+     * @param guild           Guild to which the command executor belongs.
+     * @param commandExecutor CommandExecutor class to be registered
+     */
+    void registerCommand(@Nullable Guild guild, @Nullable String groupName, @NotNull CommandExecutor commandExecutor);
 
     /**
      * Register all CommandExecutors.

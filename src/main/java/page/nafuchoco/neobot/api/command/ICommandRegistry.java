@@ -1,5 +1,6 @@
 package page.nafuchoco.neobot.api.command;
 
+import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.module.NeoModule;
@@ -7,9 +8,15 @@ import page.nafuchoco.neobot.api.module.NeoModule;
 import java.util.List;
 
 public interface ICommandRegistry {
-    void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module);
+    default void registerCommand(@NotNull CommandExecutor executor, @Nullable NeoModule module) {
+        registerCommand(executor, null, null, module);
+    }
 
-    void registerCommand(@NotNull CommandExecutor executor, @Nullable String groupName, @Nullable NeoModule module);
+    default void registerCommand(@NotNull CommandExecutor executor, @Nullable String groupName, @Nullable NeoModule module) {
+        registerCommand(executor, null, groupName, module);
+    }
+
+    void registerCommand(@NotNull CommandExecutor executor, @Nullable Guild guild, @Nullable String groupName, @Nullable NeoModule module);
 
     void removeCommand(@NotNull String name, @Nullable NeoModule module);
 

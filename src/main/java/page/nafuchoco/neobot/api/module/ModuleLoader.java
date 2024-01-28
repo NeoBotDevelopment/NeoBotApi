@@ -120,7 +120,7 @@ public class ModuleLoader {
     Class<?> getClassFromDependency(String className, boolean resolve, ModuleDescription description) {
         if (description.getDependency() == null)
             return null;
-        
+
         for (String dependency : description.getDependency()) {
             NeoModule module = moduleRegistry.getModule(dependency);
             try {
