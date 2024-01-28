@@ -41,7 +41,7 @@ public class ModuleClassLoader extends URLClassLoader {
         Class<?> jarClass;
         try {
             jarClass = Class.forName(description.getMain(), true, this);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | NoClassDefFoundError e) {
             throw new InvalidModuleException("The main class could not be found.");
         }
         Class<? extends NeoModule> moduleClass;

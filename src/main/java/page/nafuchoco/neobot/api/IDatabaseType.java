@@ -16,23 +16,8 @@
 
 package page.nafuchoco.neobot.api;
 
-public enum DatabaseType {
-    MARIADB("org.mariadb.jdbc.Driver", "jdbc:mariadb://"),
-    MYSQL("com.mysql.cj.jdbc.Driver", "jdbc:mysql://");
+public interface IDatabaseType {
+    String getJdbcClass();
 
-    private final String jdbcClass;
-    private final String addressPrefix;
-
-    DatabaseType(String jdbcClass, String addressPrefix) {
-        this.jdbcClass = jdbcClass;
-        this.addressPrefix = addressPrefix;
-    }
-
-    public String getJdbcClass() {
-        return jdbcClass;
-    }
-
-    public String getAddressPrefix() {
-        return addressPrefix;
-    }
+    String getAddressPrefix();
 }

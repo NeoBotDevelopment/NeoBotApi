@@ -46,7 +46,7 @@ public class SlashCommandEventHandler extends ListenerAdapter {
         }
 
         // コマンドクラスの取得
-        CommandExecutor command = registry.getExecutor(event.getName());
+        CommandExecutor command = registry.getExecutor(event.getGuild(), event.getName());
         CommandExecutor subCommand = command.getSubCommands().stream().filter(option -> option.optionName().equals(event.getSubcommandName())).findAny().orElse(null);
 
         // Discordにコマンドを受け付けた事を返す

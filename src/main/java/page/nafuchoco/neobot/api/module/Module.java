@@ -16,6 +16,7 @@
 
 package page.nafuchoco.neobot.api.module;
 
+import net.dv8tion.jda.api.entities.Guild;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import page.nafuchoco.neobot.api.Launcher;
@@ -56,16 +57,26 @@ public interface Module {
      * @param executor CommandExecutor class to be registered
      */
     default void registerCommand(@NotNull CommandExecutor executor) {
-        registerCommand(null, executor);
+        registerCommand(executor, null, null);
     }
 
     /**
      * Register the CommandExecutor.
      *
-     * @param groupName       Name of the command group to which the command executor belongs.
      * @param commandExecutor CommandExecutor class to be registered
+     * @param groupName       Name of the command group to which the command executor belongs.
      */
-    void registerCommand(@Nullable String groupName, @NotNull CommandExecutor commandExecutor);
+    default void registerCommand(@NotNull CommandExecutor commandExecutor, @Nullable String groupName) {
+        registerCommand(commandExecutor, groupName, null);
+    }
+
+    /**
+     * Register the CommandExecutor.
+     *
+     * @param commandExecutor CommandExecutor class to be registered
+     * @param guild           Guild to which the command executor belongs.
+     */
+    void registerCommand(@NotNull CommandExecutor commandExecutor, @Nullable String groupName, @Nullable Guild guild);
 
     /**
      * Register all CommandExecutors.
@@ -73,17 +84,28 @@ public interface Module {
      * @param executors List containing the CommandExecutor
      */
     default void registerCommands(@NotNull List<CommandExecutor> executors) {
-        registerCommand(null, executors);
+        registerCommands(executors, null, null);
     }
 
     /**
      * Register all CommandExecutors.
      *
-     * @param groupName Name of the command group to which the command executor belongs.
      * @param executors List containing the CommandExecutor
+     * @param groupName Name of the command group to which the command executor belongs.
      */
-    default void registerCommand(@Nullable String groupName, @NotNull List<CommandExecutor> executors) {
-        executors.forEach(e -> registerCommand(groupName, e));
+    default void registerCommands(@NotNull List<CommandExecutor> executors, @Nullable String groupName) {
+        registerCommands(executors, groupName, null);
+    }
+
+    /**
+     * Register all CommandExecutors.
+     *
+     * @param executors List containing the CommandExecutor
+     * @param groupName Name of the command group to which the command executor belongs.
+     * @param guild     Guild to which the command executor belongs.
+     */
+    default void registerCommands(@NotNull List<CommandExecutor> executors, @Nullable String groupName, @Nullable Guild guild) {
+        executors.forEach(e -> registerCommand(e, groupName, guild));
     }
 
     /**
@@ -100,7 +122,18 @@ public interface Module {
      *
      * @param executor CommandExecutor class that wants to be unregistered
      */
-    void removeCommand(@NotNull CommandExecutor executor);
+    default void removeCommand(@NotNull CommandExecutor executor) {
+        removeCommand(executor, null);
+    }
+
+    /**
+     * Unregisters all commands related to the specified CommandExecutor class.
+     *
+     * @param executor CommandExecutor class that wants to be unregistered
+     * @param guild    Guild to which the command executor belongs.
+     */
+
+    void removeCommand(@NotNull CommandExecutor executor, @Nullable Guild guild);
 
     /**
      * Unregisters all CommandExecutor classes registered from this module.

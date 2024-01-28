@@ -27,7 +27,7 @@ public class DatabaseConnector {
 
     private String prefix;
 
-    public DatabaseConnector(DatabaseType databaseType, String address, String database, String username, String password) {
+    public DatabaseConnector(IDatabaseType databaseType, String address, String database, String username, String password) {
         var hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName(databaseType.getJdbcClass());
         hikariConfig.setJdbcUrl(databaseType.getAddressPrefix() + address + "/" + database);
