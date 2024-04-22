@@ -83,13 +83,15 @@ public class SlashCommandEventHandler extends ListenerAdapter {
         log.debug("Command Received: {}", context);
 
         try {
-            if (context.getSubCommand() == null)
-                context.getCommand().onInvoke(context);
-            else
-                context.getSubCommand().onInvoke(context);
+            new Thread(() -> {
+                if (context.getSubCommand() == null)
+                    context.getCommand().onInvoke(context);
+                else
+                    context.getSubCommand().onInvoke(context);
 
-            if (!responseSender.isExecutorResponded())
-                hook.sendMessage("Your request has been processed!").queue();
+                if (!responseSender.isExecutorResponded())
+                    hook.sendMessage("Your request has been processed!").queue();
+            }).start();
         } catch (Exception e) {
             hook.sendMessage(ExceptionUtil.getStackTrace(e, "Failed to execute the command.")).queue();
         }

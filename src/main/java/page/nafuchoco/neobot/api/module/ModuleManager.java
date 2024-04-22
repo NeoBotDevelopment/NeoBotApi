@@ -253,8 +253,8 @@ public class ModuleManager {
                         log.info("Stopping module thread: {}", thread.getName());
                         thread.interrupt();
                         thread.join(3000);
-                        if (thread.isAlive())
-                            thread.stop();
+                        //if (thread.isAlive())
+                        //    thread.stop();  todo: Deprecated method
                     }
                 }
 
