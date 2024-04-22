@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id "io.freefair.lombok" version "6.6.3"
+    id "io.freefair.lombok" version "8.6"
 }
 
 group 'page.nafuchoco'
@@ -43,28 +43,28 @@ repositories {
 
 dependencies {
     // Annotation
-    compileOnly 'org.jetbrains:annotations:24.0.1'
+    compileOnly 'org.jetbrains:annotations:24.1.0'
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 
     // Logger
-    api 'org.slf4j:slf4j-api:2.0.5'
+    api 'org.slf4j:slf4j-api:2.0.13'
 
     // ClientLib
-    api('net.dv8tion:JDA:5.0.0-beta.19') {
+    api('net.dv8tion:JDA:5.0.0-beta.23') {
         exclude module: 'opus-java'
     }
 
     // Parser
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.16.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.17.0'
 
     // Commons Library
-    implementation 'commons-io:commons-io:2.11.0'
-    implementation 'commons-codec:commons-codec:1.15'
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-io:commons-io:2.16.0'
+    implementation 'commons-codec:commons-codec:1.16.1'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
 
     // SQL
-    api 'com.zaxxer:HikariCP:5.0.1'
+    api 'com.zaxxer:HikariCP:5.1.0'
 }
